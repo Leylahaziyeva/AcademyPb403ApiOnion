@@ -84,4 +84,18 @@ public class GroupController : ControllerBase
         await _groupService.DeleteAsync(id);
         return NoContent();
     }
+
+    [HttpPost("{groupId}/teachers/{teacherId}")]
+    public async Task<IActionResult> AddTeacherToGroup(int groupId, int teacherId)
+    {
+        await _groupService.AddTeacherToGroupAsync(groupId, teacherId);
+        return Ok(new { message = "Teacher added to group successfully" });
+    }
+
+    [HttpDelete("{groupId}/teachers/{teacherId}")]
+    public async Task<IActionResult> RemoveTeacherFromGroup(int groupId, int teacherId)
+    {
+        await _groupService.RemoveTeacherFromGroupAsync(groupId, teacherId);
+        return Ok(new { message = "Teacher removed from group successfully" });
+    }
 }
